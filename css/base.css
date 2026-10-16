@@ -1,0 +1,78 @@
+/* ============================================================
+   BASE — Variables, Reset, Typography, Utilities
+   ============================================================ */
+
+:root {
+  /* Colors */
+  --navy: #0F172A;
+  --navy-2: #1E293B;
+  --bg: #F1F5F9;
+  --bg-2: #F8FAFC;
+  --card: #FFFFFF;
+
+  --green: #10B981;
+  --green-soft: #D1FAE5;
+  --red: #EF4444;
+  --red-soft: #FEE2E2;
+  --blue: #3B82F6;
+  --blue-soft: #DBEAFE;
+  --purple: #8B5CF6;
+  --purple-soft: #EDE9FE;
+  --orange: #F59E0B;
+  --orange-soft: #FEF3C7;
+
+  --text: #0F172A;
+  --muted: #64748B;
+  --border: #E2E8F0;
+
+  --radius: 16px;
+  --shadow: 0 1px 3px rgba(15,23,42,.06), 0 4px 12px rgba(15,23,42,.04);
+
+  --sidebar-w: 260px;
+}
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 15px;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+.mobile-only { display: block; }
+.desktop-only { display: none; }
+
+@media (min-width: 900px) {
+  .mobile-only { display: none; }
+  .desktop-only { display: flex; }
+}

@@ -1,0 +1,151 @@
+/* ============================================================
+   PAGE: DASHBOARD
+   ============================================================ */
+
+/* ============ EXPORT CARD ============ */
+.export-card {
+  background: linear-gradient(135deg, #065F46, #047857);
+  border-radius: 18px;
+  padding: 20px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(6,95,70,.25);
+  margin-bottom: 14px;
+}
+.export-card::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+}
+.export-card::after {
+  content: '';
+  position: absolute;
+  bottom: -70px; left: -30px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+}
+.export-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.export-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.18);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.export-head h3 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -.3px;
+}
+.export-head p {
+  font-size: 11.5px;
+  color: rgba(255,255,255,.75);
+  margin-top: 2px;
+}
+.export-actions {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.export-btn {
+  padding: 13px 12px;
+  border-radius: 12px;
+  background: #fff;
+  color: #065F46;
+  font-weight: 800;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: .15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+.export-btn:active { transform: scale(.97); }
+.export-btn.csv {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,.35);
+  box-shadow: none;
+}
+.export-btn.csv:hover { background: rgba(255,255,255,.25); }
+.export-btn svg { width: 16px; height: 16px; }
+
+/* ============ DASH LAYOUT ============ */
+.dash-grid .stat { padding: 14px; }
+
+/* ============ DESKTOP ============ */
+@media (min-width: 900px) {
+
+  /* Export card horizontal di desktop */
+  .export-card {
+    padding: 24px 26px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .export-head { margin-bottom: 0; flex: 1; }
+  .export-head h3 { font-size: 18px; }
+  .export-actions {
+    grid-template-columns: auto auto;
+    justify-content: flex-end;
+  }
+  .export-btn {
+    padding: 11px 22px;
+    width: auto;
+  }
+  .export-btn svg { width: 15px; height: 15px; }
+
+  /* Dash grid: 4 kolom */
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .dash-grid .stat {
+    padding: 20px;
+    margin: 0;
+  }
+  .dash-grid .stat-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+  .dash-grid .stat-value { font-size: 22px; }
+
+  /* 2 kolom chart & progress */
+  .dash-2col {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .dash-2col .card { margin: 0; }
+}
+
+/* Tablet */
+@media (min-width: 900px) and (max-width: 1150px) {
+  .dash-grid { grid-template-columns: repeat(2, 1fr); }
+  .dash-2col { grid-template-columns: 1fr; }
+}
