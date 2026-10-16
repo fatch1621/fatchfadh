@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Masuk — FatchFadh</title>
+<meta name="theme-color" content="#0F172A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/pages/auth.css">
+</head>
+<body class="auth-body">
+
+<div class="auth-wrap">
+
+  <!-- ============ PANEL KIRI: BRANDING ============ -->
+  <aside class="auth-brand">
+
+    <div class="brand-top">
+      <div class="brand-badge">
+        <span class="badge-icon">✦</span>
+        Kebijaksanaan Finansial
+      </div>
+      <h1 class="brand-title">
+        Membangun Kebebasan<br>Finansial Sejati
+      </h1>
+      <p class="brand-sub">
+        Kelola arus kas keluarga Anda dengan ketenangan pikiran, presisi, dan perencanaan terstruktur.
+      </p>
+    </div>
+
+    <blockquote class="brand-quote">
+      <div class="quote-mark">❝</div>
+      <p class="quote-text">
+        "Bukan tentang seberapa banyak uang yang Anda hasilkan, melainkan seberapa banyak yang Anda pertahankan dan investasikan untuk masa depan."
+      </p>
+      <div class="quote-author">
+        <span>The Psychology of Money</span>
+        <span class="dot">·</span>
+        <span>Disiplin & Visi Finansial</span>
+      </div>
+    </blockquote>
+
+    <div class="brand-footer">
+      <div class="footer-item">
+        <span class="footer-icon">◎</span>
+        Eksklusif & Terproteksi
+      </div>
+      <div class="footer-item">
+        <span class="footer-icon">🔒</span>
+        Privasi Maksimal
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ============ PANEL KANAN: FORM ============ -->
+  <main class="auth-form-wrap">
+    <div class="auth-form-inner">
+
+      <!-- Header -->
+      <div class="auth-header">
+        <h2 class="auth-title" id="authTitle">Selamat Datang Kembali</h2>
+        <p class="auth-subtitle" id="authSubtitle">
+          Masukkan kredensial Anda untuk masuk ke akun FatchFadh.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <form class="auth-form" id="authForm" novalidate>
+
+        <div class="auth-field">
+          <label class="auth-label">
+            <span id="labelEmail">Username atau Email</span>
+            <span class="req">*</span>
+          </label>
+          <div class="auth-input">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/>
+              </svg>
+            </span>
+            <input type="email" id="inputEmail" placeholder="nama@email.com" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="auth-field">
+          <div class="auth-label-row">
+            <label class="auth-label">
+              <span>Kata Sandi</span>
+              <span class="req">*</span>
+            </label>
+            <a href="#" class="auth-link-small" id="btnForgot">Lupa Kata Sandi?</a>
+          </div>
+          <div class="auth-input">
+            <span class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="11" width="16" height="10" rx="2"/>
+                <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+              </svg>
+            </span>
+            <input type="password" id="inputPassword" placeholder="Masukkan kata sandi Anda" autocomplete="current-password" required>
+            <button type="button" class="input-toggle" id="btnTogglePassword" aria-label="Tampilkan kata sandi">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Row Remember + mode signup hidden -->
+        <div class="auth-check-row" id="authCheckRow">
+          <label class="auth-check">
+            <input type="checkbox" id="checkRemember" checked>
+            <span class="check-box"></span>
+            <span>Ingat Saya</span>
+          </label>
+        </div>
+
+        <!-- Error / success message -->
+        <div class="auth-message" id="authMessage"></div>
+
+        <button type="submit" class="auth-submit" id="authSubmit">
+          <span id="authSubmitText">Masuk</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="arrow">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+
+      </form>
+
+    </div>
+  </main>
+
+</div>
+
+<script type="module" src="js/auth-page.js"></script>
+</body>
+</html>

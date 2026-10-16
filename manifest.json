@@ -1,0 +1,42 @@
+{
+  "name": "FatchFadh — Laporan Keuangan",
+  "short_name": "FatchFadh",
+  "description": "Aplikasi pencatatan keuangan pribadi — kelola pemasukan, pengeluaran, dan budgeting dengan mudah.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0F172A",
+  "theme_color": "#10B981",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    {
+      "src": "/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tambah Pemasukan",
+      "short_name": "Masuk",
+      "url": "/?page=income",
+      "icons": [{ "src": "/assets/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Tambah Pengeluaran",
+      "short_name": "Keluar",
+      "url": "/?page=expense",
+      "icons": [{ "src": "/assets/icon.svg", "sizes": "any" }]
+    }
+  ]
+}

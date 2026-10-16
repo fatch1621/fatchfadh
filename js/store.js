@@ -1,9 +1,11 @@
 /* ============================================================
-   STORE — Data layer (localStorage)
-   Nanti tinggal ganti isi file ini untuk migrasi ke Firestore.
+   STORE — Data layer hybrid: cache lokal + Firestore
+   Baca: dari cache lokal (instant)
+   Tulis: cache lokal dulu, lalu background sync ke cloud
    ============================================================ */
 
 import { generateId } from './utils.js';
+import { cloudSet, cloudDelete, getUserId } from './sync.js';
 
 const KEY = 'fatchfadh_data_v1';
 
@@ -16,12 +18,14 @@ const EMPTY = {
 
 let cache = null;
 
-/* Deep clone via JSON — aman di semua browser (structuredClone tidak selalu ada) */
+/* Deep clone via JSON */
 function clone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
-/* ---------- Internal ---------- */
+/* ============================================================
+   INTERNAL: Cache lokal
+   ============================================================ */
 function load() {
   if (cache) return cache;
   try {
@@ -34,7 +38,7 @@ function load() {
   return cache;
 }
 
-function save() {
+function saveLocal() {
   try {
     localStorage.setItem(KEY, JSON.stringify(cache));
   } catch (err) {
@@ -43,10 +47,19 @@ function save() {
   document.dispatchEvent(new CustomEvent('store:change'));
 }
 
+/* Update cache DARI cloud (dipakai listener 12C) — no cloud write-back */
+function setFromCloud(type, items) {
+  const data = load();
+  data[type] = items;
+  saveLocal();
+  console.log(`[Store] Synced ${type} from cloud (${items.length} items)`);
+}
+
 /* ============================================================
    PUBLIC API
    ============================================================ */
 export const Store = {
+  /* ---------- Read (dari cache) ---------- */
   getAll(type) {
     return [...load()[type]];
   },
@@ -55,6 +68,7 @@ export const Store = {
     return load()[type].find((x) => x.id === id);
   },
 
+  /* ---------- Write ---------- */
   add(type, item) {
     const data = load();
     const newItem = {
@@ -63,15 +77,16 @@ export const Store = {
       ...item,
     };
     data[type].unshift(newItem);
-    save();
+    saveLocal();
+
+    /* Background: tulis ke cloud (fire & forget) */
+    if (getUserId()) {
+      cloudSet(type, newItem.id, newItem);
+    }
+
     return newItem;
   },
 
-  remove(type, id) {
-    const data = load();
-    data[type] = data[type].filter((x) => x.id !== id);
-    save();
-  },
   update(type, id, patch) {
     const data = load();
     const idx = data[type].findIndex((x) => x.id === id);
@@ -80,12 +95,41 @@ export const Store = {
       return null;
     }
     data[type][idx] = { ...data[type][idx], ...patch, updatedAt: Date.now() };
-    save();
+    saveLocal();
+
+    /* Background: tulis ke cloud */
+    if (getUserId()) {
+      cloudSet(type, id, data[type][idx]);
+    }
+
     return data[type][idx];
   },
+
+  remove(type, id) {
+    const data = load();
+    const item = data[type].find((x) => x.id === id);
+    if (!item) return;
+
+    data[type] = data[type].filter((x) => x.id !== id);
+    saveLocal();
+
+    /* Background: hapus dari cloud */
+    if (getUserId()) {
+      cloudDelete(type, id);
+    }
+  },
+
   clear(type) {
-    load()[type] = [];
-    save();
+    const data = load();
+    const ids = data[type].map((x) => x.id);
+    data[type] = [];
+    saveLocal();
+
+    /* Background: hapus semua dari cloud */
+    if (getUserId()) {
+      ids.forEach((id) => cloudDelete(type, id));
+      console.log(`[Store] Clearing ${ids.length} items from ${type} (cloud)`);
+    }
   },
 
   /* ---------- Shortcut getters ---------- */
@@ -109,7 +153,6 @@ export const Store = {
     };
   },
 
-  /* Budget usage = total pemasukan yang di-plotkan ke budget ini */
   getBudgetUsage(budgetId) {
     return this.getIncome()
       .filter((x) => x.budgetId === budgetId)
@@ -126,7 +169,7 @@ export const Store = {
 
     if (isEmpty) {
       cache = clone(dummy);
-      save();
+      saveLocal();
       console.log('[Store] Dummy data seeded');
     } else {
       console.log('[Store] Data loaded from localStorage');
@@ -135,11 +178,19 @@ export const Store = {
 
   loadDummy(dummy) {
     cache = clone(dummy);
-    save();
+    saveLocal();
   },
 
   reset() {
     cache = clone(EMPTY);
-    save();
+    saveLocal();
+  },
+
+  /* ---------- Dipakai oleh sync listener (12C) ---------- */
+  _setFromCloud: setFromCloud,
+
+  /* ---------- Debugging ---------- */
+  _dump() {
+    return clone(load());
   },
 };

@@ -156,3 +156,36 @@ export async function withLoading(btn, fn) {
     btn.classList.remove('btn-loading');
   }
 }
+/* ============================================================
+   SYNC BADGE — Indikator status sinkronisasi
+   ============================================================ */
+import { onSyncStatus } from './sync.js';
+
+let syncBadgeInitialized = false;
+
+export function initSyncBadge() {
+  if (syncBadgeInitialized) return;
+  syncBadgeInitialized = true;
+
+  const badges = document.querySelectorAll('[data-sync-badge]');
+  if (badges.length === 0) return;
+
+  onSyncStatus((status) => {
+    const config = {
+      synced:  { text: 'Tersinkron',  cls: 'synced',  icon: '●' },
+      syncing: { text: 'Menyinkron',  cls: 'syncing', icon: '◌' },
+      offline: { text: 'Offline',     cls: 'offline', icon: '⚠' },
+      error:   { text: 'Sync error',  cls: 'error',   icon: '!' },
+      idle:    { text: 'Menunggu',    cls: 'idle',    icon: '○' },
+    }[status] || { text: status, cls: 'idle', icon: '○' };
+
+    badges.forEach((badge) => {
+      badge.className = 'sync-badge ' + (badge.classList.contains('compact') ? 'compact ' : '') + config.cls;
+      const dot = badge.querySelector('.sync-dot');
+      const text = badge.querySelector('.sync-text');
+      if (dot) dot.textContent = config.icon;
+      if (text) text.textContent = config.text;
+      badge.title = `Status sinkronisasi: ${config.text}`;
+    });
+  });
+}

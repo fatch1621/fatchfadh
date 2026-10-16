@@ -6,6 +6,14 @@
 <title>FatchFadh — Laporan Keuangan</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💰</text></svg>">
 <meta name="description" content="Aplikasi pencatatan keuangan pribadi — FatchFadh">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#10B981">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FatchFadh">
+<link rel="apple-touch-icon" href="/assets/icon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -65,6 +73,13 @@
       <div class="plus">+</div>
       Tambah Transaksi
     </button>
+        <button class="sidebar-logout" data-action="logout">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+        <path d="M16 17l5-5-5-5M21 12H9"/>
+      </svg>
+      Keluar
+    </button>
   </aside>
 
   <!-- ============ HEADER MOBILE ============ -->
@@ -74,6 +89,10 @@
         <div class="brand-icon">💰</div>
         FatchFadh
       </div>
+       <div style="display:flex;align-items:center;gap:10px;">
+        <div class="sync-badge compact idle" data-sync-badge>
+  <span class="sync-dot">○</span>
+</div>
       <div class="header-date" id="todayDate">—</div>
     </div>
     <div class="total-label">Total Keuangan Saat Ini</div>
@@ -94,8 +113,13 @@
         <p id="desktopSubtitle">Ringkasan keuangan kamu hari ini</p>
       </div>
       <div class="actions">
+                <div id="syncBadge" class="sync-badge idle">
+          <span class="sync-dot">○</span>
+          <span class="sync-text">Memuat</span>
+        </div>
         <div class="total-badge">Total: <b id="topbarTotal">Rp 0</b></div>
         <div class="icon-bell">🔔</div>
+        
         <div class="user-pill">
           <div class="av">FF</div>
           <div>
@@ -585,6 +609,14 @@
       <div class="opt-body">
         <div class="opt-title">Kategori</div>
         <div class="opt-sub">Kelola kategori pemasukan & pengeluaran</div>
+      </div>
+      <div class="opt-arrow">›</div>
+    </button>
+        <button class="sheet-option" data-action="logout" style="margin-top:8px;border-color:#FEE2E2;">
+      <div class="opt-icon" style="background:#FEE2E2;color:#DC2626;">🚪</div>
+      <div class="opt-body">
+        <div class="opt-title" style="color:#DC2626;">Keluar</div>
+        <div class="opt-sub">Logout dari akun ini</div>
       </div>
       <div class="opt-arrow">›</div>
     </button>
