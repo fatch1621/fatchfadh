@@ -84,24 +84,28 @@
 
   <!-- ============ HEADER MOBILE ============ -->
   <header class="header">
-    <div class="header-top">
-      <div class="brand">
-        <div class="brand-icon">💰</div>
-        FatchFadh
-      </div>
-       <div style="display:flex;align-items:center;gap:10px;">
-        <div class="sync-badge compact idle" data-sync-badge>
-  <span class="sync-dot">○</span>
-</div>
-      <div class="header-date" id="todayDate">—</div>
+  <div class="header-top">
+    <div class="brand">
+      <div class="brand-icon">💰</div>
+      FatchFadh
     </div>
+    <div class="header-date" id="todayDate">—</div>
+  </div>
+
+  <div class="total-label-row">
     <div class="total-label">Total Keuangan Saat Ini</div>
-    <div class="total-amount" id="mobileTotal">Rp 0</div>
-    <div class="total-sub">
-      <span>Masuk: <b id="mobileIncome">Rp 0</b></span>
-      <span>Keluar: <b id="mobileExpense">Rp 0</b></span>
+    <div class="sync-badge compact idle" data-sync-badge>
+      <span class="sync-dot">○</span>
+      <span class="sync-text">Memuat</span>
     </div>
-  </header>
+  </div>
+
+  <div class="total-amount" id="mobileTotal">Rp 0</div>
+  <div class="total-sub">
+    <span>Masuk: <b id="mobileIncome">Rp 0</b></span>
+    <span>Keluar: <b id="mobileExpense">Rp 0</b></span>
+  </div>
+</header>
 
   <!-- ============ MAIN CONTENT ============ -->
   <main class="main">

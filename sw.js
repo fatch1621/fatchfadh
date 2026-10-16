@@ -3,7 +3,7 @@
    Strategy: Cache-first untuk aset, Network-first untuk API
    ============================================================ */
 
-const CACHE_VERSION = 'fatchfadh-v3';
+const CACHE_VERSION = 'fatchfadh-v3.1';
 const CACHE_ASSETS = [
   /* Root & HTML */
   '/',

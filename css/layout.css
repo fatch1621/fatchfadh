@@ -42,12 +42,22 @@
   color: #94A3B8;
   font-weight: 500;
 }
+/* Baris label total + badge sync */
+.total-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
 .total-label {
   font-size: 12px;
   color: #94A3B8;
   font-weight: 500;
   letter-spacing: .3px;
   text-transform: uppercase;
+  margin-bottom: 0;  /* hapus margin lama */
 }
 .total-amount {
   font-size: 28px;
@@ -601,9 +611,37 @@
   display: none;
 }
 
-/* Sembunyikan text di mobile header supaya hemat ruang */
-@media (max-width: 899px) {
-  .header-top .sync-badge .sync-text {
-    display: none;
-  }
+
+/* Badge sync versi mobile header (dark background) */
+.header .sync-badge {
+  padding: 3px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.08);
+  color: #94A3B8;
+  letter-spacing: .2px;
+}
+.header .sync-badge .sync-dot { font-size: 11px; line-height: 1; }
+
+.header .sync-badge.synced {
+  background: rgba(16,185,129,.15);
+  color: #34D399;
+  border-color: rgba(16,185,129,.3);
+}
+.header .sync-badge.syncing {
+  background: rgba(59,130,246,.15);
+  color: #60A5FA;
+  border-color: rgba(59,130,246,.3);
+}
+.header .sync-badge.offline {
+  background: rgba(245,158,11,.15);
+  color: #FBBF24;
+  border-color: rgba(245,158,11,.3);
+}
+.header .sync-badge.error {
+  background: rgba(239,68,68,.15);
+  color: #F87171;
+  border-color: rgba(239,68,68,.3);
 }
