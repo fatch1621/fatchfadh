@@ -36,3 +36,6 @@ Aplikasi pencatatan keuangan pribadi berbasis web. Mobile-friendly, tanpa login,
 - Commit langsung ke `main` untuk perubahan kecil
 - Branch per fitur untuk perubahan besar
 - Format commit: `feat:`, `fix:`, `style:`, `docs:`
+
+## Status
+✅ Live di Firebase Hosting
